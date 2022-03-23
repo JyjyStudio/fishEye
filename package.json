@@ -1,0 +1,23 @@
+{
+  "name": "projet-6",
+  "version": "1.0.0",
+  "description": "FishEyes",
+  "main": "photographer.js",
+  "scripts": {
+    "sass": "sass --watch sass:css --no-source-map",
+    "sass-compressed": "sass --watch sass:css --style compressed --no-source-map"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JyjyStudio/Fisheye-P6.git"
+  },
+  "author": "JyjyStudio",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JyjyStudio/Fisheye-P6/issues"
+  },
+  "homepage": "https://github.com/JyjyStudio/Fisheye-P6#readme",
+  "dependencies": {
+    "sass": "^1.49.9"
+  }
+}
