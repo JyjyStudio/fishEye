@@ -13,14 +13,17 @@
     </head>
     <body>
         <header>
-            <img src="assets/images/logo.png" class="logo" alt="logo"/>
+            <a href="index.html">
+                <img src="assets/images/logo.png" class="logo" alt="logo"/>
+            </a>
             <h1>Nos photographes</h1>
         </header>
         <main id="main">
             <div class="photographer_section"></div>
         </main>
-        <script src="scripts/factories/Photographer.js"></script>
-        <script src="scripts/pages/index.js"></script>
-        <script src="scripts/pages/photographer.js"></script>
+        <script src="scripts/factories/photographerFactory.js"></script>
+        <script src="scripts/utils/Api.js"></script>
+        <script src="scripts/utils/contactForm.js"></script>
+        <script src="scripts/pages/index.js" type="module"></script>
     </body>
 </html>
