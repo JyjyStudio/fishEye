@@ -55,24 +55,10 @@ a {
   width: 200px;
   border-radius: 50%;
   object-fit: cover;
+  display: block;
+  margin: 0 auto;
 }
 .photographer_section h2 {
-  color: #D3573C;
-  font-size: 36px;
-}
-
-.photograph-header {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-.photograph-header img {
-  height: 200px;
-  width: 200px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-.photograph-header h2 {
   color: #D3573C;
   font-size: 36px;
 }
