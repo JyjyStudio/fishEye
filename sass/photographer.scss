@@ -1,12 +1,86 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+main {
+    margin: 0 100px;
+    .photograph-header {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background-color: #FAFAFA;
+        height: 300px;
+        .infos {
+            height: 70%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
+        .localisation-tagline {
+            display: flex;
+            flex-direction: column;
+            height: 30%;
+            justify-content: space-between;
+        }
+        img {
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        h2 {
+            color: #D3573C;
+            font-size: 36px;
+        }
+        #contact-button {
+            &:hover, &:focus {
+                background-color: #D3573C;
+                color: black;
+            }
+            &:focus {
+                outline: #901C1C solid;
+            }
+        }
+    }
+    .photograph-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        article {
+            margin: 15px 0;
+            width: 300px;
+            .content-infos {
+                display:flex; 
+                justify-content: space-between; 
+                color: #901C1C;
+                font-size: 22px;
+                .title {
+                    font-size: 2vw;
+                }
+            }
+        }
+        img, video {
+            width: 100%;
+            height: 300px; 
+            border-radius: 5px;
+        }
+        img {
+            object-fit: cover;
+        }
+        video {
+            object-fit: fill;
+        }
+    }
+}
+
+// modal et formulaire 
+
 #contact_modal {
     display: none;
 }
 
-.photograph-header {
-    background-color: #FAFAFA;
-    height: 300px;
-    margin: 0 100px;
-}
 
 .contact_button {
     font-size: 20px;
@@ -74,6 +148,7 @@ form {
         height: 45px;
         border: none;
         border-radius: 5px;
+        padding-left: 10px;
     }
     textarea {
         width: 100%;
@@ -82,6 +157,8 @@ form {
         border-radius: 5px;
         resize: none;
         margin-bottom: 10px;
+        padding-left: 10px;
+        padding-top: 10px;
     }
     button {
         &:hover, &:focus {
@@ -100,29 +177,4 @@ form {
     background: #0009;
     width: 100%;
     height: 100%;
-}
-
-.photograph-header {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    img {
-        height: 200px;
-        width: 200px;
-        border-radius: 50%;
-        object-fit: cover;
-    }
-    h2 {
-        color: #D3573C;
-        font-size: 36px;
-    }
-    #contact-button {
-        &:hover, &:focus {
-            background-color: #D3573C;
-            color: black;
-        }
-        &:focus {
-            outline: #901C1C solid;
-        }
-    }
 }

@@ -1,11 +1,80 @@
-#contact_modal {
-  display: none;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.photograph-header {
+main {
+  margin: 0 100px;
+}
+main .photograph-header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   background-color: #FAFAFA;
   height: 300px;
-  margin: 0 100px;
+}
+main .photograph-header .infos {
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+main .photograph-header .localisation-tagline {
+  display: flex;
+  flex-direction: column;
+  height: 30%;
+  justify-content: space-between;
+}
+main .photograph-header img {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+main .photograph-header h2 {
+  color: #D3573C;
+  font-size: 36px;
+}
+main .photograph-header #contact-button:hover, main .photograph-header #contact-button:focus {
+  background-color: #D3573C;
+  color: black;
+}
+main .photograph-header #contact-button:focus {
+  outline: #901C1C solid;
+}
+main .photograph-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+main .photograph-content article {
+  margin: 15px 0;
+  width: 300px;
+}
+main .photograph-content article .content-infos {
+  display: flex;
+  justify-content: space-between;
+  color: #901C1C;
+  font-size: 22px;
+}
+main .photograph-content article .content-infos .title {
+  font-size: 2vw;
+}
+main .photograph-content img, main .photograph-content video {
+  width: 100%;
+  height: 300px;
+  border-radius: 5px;
+}
+main .photograph-content img {
+  object-fit: cover;
+}
+main .photograph-content video {
+  object-fit: fill;
+}
+
+#contact_modal {
+  display: none;
 }
 
 .contact_button {
@@ -74,6 +143,7 @@ form input {
   height: 45px;
   border: none;
   border-radius: 5px;
+  padding-left: 10px;
 }
 form textarea {
   width: 100%;
@@ -82,6 +152,8 @@ form textarea {
   border-radius: 5px;
   resize: none;
   margin-bottom: 10px;
+  padding-left: 10px;
+  padding-top: 10px;
 }
 form button:hover, form button:focus {
   background-color: #D3573C;
@@ -97,27 +169,4 @@ form button:focus {
   background: #0009;
   width: 100%;
   height: 100%;
-}
-
-.photograph-header {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-.photograph-header img {
-  height: 200px;
-  width: 200px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-.photograph-header h2 {
-  color: #D3573C;
-  font-size: 36px;
-}
-.photograph-header #contact-button:hover, .photograph-header #contact-button:focus {
-  background-color: #D3573C;
-  color: black;
-}
-.photograph-header #contact-button:focus {
-  outline: #901C1C solid;
 }
