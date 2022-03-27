@@ -55,9 +55,8 @@ main {
                 display:flex; 
                 justify-content: space-between; 
                 color: #901C1C;
-                font-size: 22px;
-                .title {
-                    font-size: 2vw;
+                .title, .likes{
+                    font-size: 1.8vw;
                 }
             }
         }
@@ -65,6 +64,7 @@ main {
             width: 100%;
             height: 300px; 
             border-radius: 5px;
+            cursor: pointer;
         }
         img {
             object-fit: cover;
@@ -149,6 +149,7 @@ form {
         border: none;
         border-radius: 5px;
         padding-left: 10px;
+        font-family: "DM Sans", sans-serif;
     }
     textarea {
         width: 100%;
@@ -159,6 +160,7 @@ form {
         margin-bottom: 10px;
         padding-left: 10px;
         padding-top: 10px;
+        font-family: "DM Sans", sans-serif;
     }
     button {
         &:hover, &:focus {
@@ -177,4 +179,46 @@ form {
     background: #0009;
     width: 100%;
     height: 100%;
+}
+
+#lightbox {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 100vh;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    .left, .right {
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 2em;
+        color: #901C1C;
+        cursor: pointer;
+    }
+    .left {
+        left: 100px;
+    }
+    .right {
+        right: 100px;
+    }
+    .close {
+        position: fixed;
+        right: 50px;
+        top: 30px;
+        font-size: 2em;
+        color: #901C1C;
+        cursor: pointer;
+    }
+    img, video {
+        width: 70%;
+        height: 80%;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        object-fit: contain;
+    }
 }
