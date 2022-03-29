@@ -20,13 +20,12 @@ async function displayData(photographers) {
     for (let i = 0; i < photographers.length; i++) {
         //affiche les infos du photographe demandé seulement
         if(photographers[i].id == id) {
-
             const photographerModel = photographerFactory(photographers[i]);
             const userCard = photographerModel.getUserInfos();
             photographersSection.innerHTML += userCard;
             nameTitle.innerText += (photographers[i].name);
-
         }
+        //affiche ses medias
         if(photographers[i].photographerId == id) {
             const photographerMedia = mediaFactory(photographers[i]);
             const projectCard = photographerMedia.createProjectsCard();
@@ -40,7 +39,6 @@ async function init() {
     const allInfos = await getPhotographersAllInfos();
     displayData(allInfos);
     // displayData(allInfos.photographersMedias);
-    console.log(allInfos);
 
     // ouvre et ferme le formulaire 
     const contactForm = document.getElementById('contact-button');
@@ -71,44 +69,33 @@ async function init() {
     
     images.forEach(image => {
         image.addEventListener('click', ()=> {
-            lightboxVideo.style.display = "none";
-            lightboxImage.style.display = "block";
-            lightbox.style.display = "block";
-            // lightbox.insertAdjacentElement("afterbegin" ,image)
+            hide(lightboxVideo);
+            show(lightbox);
+            show(lightboxImage);
             lightboxImage.src = image.src;
             lightboxImage.alt = image.alt;
+            const imgpath = image.src.split('/');
+            const imgName = imgpath[imgpath.length -1];
+            index = medias.indexOf(imgName);
         })
     })
     videos.forEach(video => {
         video.addEventListener('click', ()=> {
-            lightboxImage.style.display = "none";
-            lightboxVideo.style.display = "block";
+            hide(lightboxImage);
+            show(lightboxVideo);
             lightbox.style.display = "block";
             const LightboxVideoSrc = document.querySelector('video source');
-            console.log(video);
-            console.log(LightboxVideoSrc);
-            lightboxVideo.appendChild(LightboxVideoSrc)
+            lightboxVideo.appendChild(LightboxVideoSrc);
         })
     })
 
     //slider 
     previousMedia.addEventListener('click', ()=> {
-        if(medias[index].includes('jpg')) {
-            slider(-1, lightboxImage);
-        } else {
-            slider(-1, LightboxVideoSrc);
-        }
+        slider(-1);
     })
     nextMedia.addEventListener('click', ()=> {
-        if(medias[index].includes('jpg')) {
-            slider(1, lightboxImage);
-        } else {
-            slider(1, LightboxVideoSrc);
-        }
+        slider(1);
     })
-
-    console.log(medias);
-
 };
 
 init();
@@ -143,16 +130,38 @@ const previousMedia = document.getElementById('previous-media')
 const nextMedia = document.getElementById('next-media')
 const lightboxImage = document.querySelector('#img');
 const lightboxVideo = document.querySelector('#video');
+const LightboxVideoSrc = document.querySelector('video source');
 closeLightbox.addEventListener('click', () => {
     lightbox.style.display = 'none';
 })
+
 //slider 
 let index = 0;
-function slider(sens, media) {
+function slider(sens) {
     index += sens;
-    if(index < 0) {
+    if((index ) < 0) {
         index = medias.length -1;
     }
-    if(index > medias.length -1) index = 0;
-    media.src = `/Projet-6/assets/photographers/${id}/${medias[index]}`;
+    if(index > medias.length -1) {
+        index = 0;
+    }
+    if(medias[index].includes('jpg')) {
+        hide(lightboxVideo);
+        show(lightboxImage);
+        lightboxImage.src = `/Projet-6/assets/photographers/${id}/${medias[index]}`;
+    }else {
+        hide(lightboxImage);
+        show(lightboxVideo);
+        const LightboxVideoSrc = document.querySelector('video source');
+        lightboxVideo.appendChild(LightboxVideoSrc);
+        LightboxVideoSrc.src =  `/Projet-6/assets/photographers/${id}/${medias[index]}`;
+    }
+    
+}
+
+function hide(element) {
+    element.style.display = "none";
+}
+function show(element) {
+    element.style.display = "block";
 }
