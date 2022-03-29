@@ -1,7 +1,7 @@
 const id = new URLSearchParams(location.search).get('id');
 const nameTitle = document.getElementById('name');
 const medias = [];
-
+let allLikes = 0;
 
 async function getPhotographersAllInfos() {
     const photographersApi =  new PhotographersApi("/Projet-6/data/photographers.json", 'photographers');
@@ -24,6 +24,9 @@ async function displayData(photographers) {
             const userCard = photographerModel.getUserInfos();
             photographersSection.innerHTML += userCard;
             nameTitle.innerText += (photographers[i].name);
+            const price = photographerModel.price;
+            const priceElement = document.getElementById('price');
+            priceElement.innerText = `${price}€ / jour`;
         }
         //affiche ses medias
         if(photographers[i].photographerId == id) {
@@ -31,14 +34,30 @@ async function displayData(photographers) {
             const projectCard = photographerMedia.createProjectsCard();
             content.innerHTML += projectCard;
             medias.push(photographerMedia.video || photographerMedia.image)
+            allLikes += photographerMedia.likes;
         }
     };
+
+    //affichage des likes
+    const likeElements = document.querySelectorAll(`p.likes`);
+    const TotalikesElement = document.getElementById('likes');
+    TotalikesElement.innerHTML = `${allLikes} <i class="fa-solid fa-heart full-heart">`;
+    likeElements.forEach(element => {
+        let count = 0;
+        element.addEventListener('click', () => {
+            count++
+            if(count == 1) { //permet d'incrementer le like une seule fois par media
+                element.querySelector('span').innerText++
+                allLikes++
+                TotalikesElement.innerHTML = `${allLikes} <i class="fa-solid fa-heart full-heart">`;
+            } 
+        })
+    })
 }
 
 async function init() {
     const allInfos = await getPhotographersAllInfos();
     displayData(allInfos);
-    // displayData(allInfos.photographersMedias);
 
     // ouvre et ferme le formulaire 
     const contactForm = document.getElementById('contact-button');
@@ -88,7 +107,7 @@ async function init() {
             lightboxVideo.appendChild(LightboxVideoSrc);
         })
     })
-
+    
     //slider 
     previousMedia.addEventListener('click', ()=> {
         slider(-1);
