@@ -1,102 +1,109 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Fisheye - photographe </title>
-        <link rel="icon" type="image/x-icon" href="assets/favicon.png" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-        <link href="css/style.css" rel="stylesheet" type="text/css" />
-    </head>
 
-    <body>
-        <header role="banner">
-            <a href="index.html" role="img" aria-label="Fisheye Home page">
-                <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"/>
-            </a>
-        </header>
-        <main id="main">
-            <div class="photograph-header"></div>
-            <div class="filter">
-                <div>Trier par : </div>
-                <div class="custom-select">
-                    <ul class="select">
-                      <li>
-                        <input class="select_close" type="radio" name="customselect" id="customselect-close" value="popularite" />
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fisheye - photographe </title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <header role="banner">
+        <a href="index.html" role="img" aria-label="Fisheye Home page">
+            <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" />
+        </a>
+    </header>
+    <main id="main">
+        <div class="photograph-header"></div>
+        <div class="filter">
+            <div>Trier par : </div>
+            <div class="custom-select">
+                <ul class="select">
+                    <li>
+                        <input class="select_close" type="radio" name="customselect" id="customselect-close"
+                            value="popularite" />
                         <span class="select_label select_label-placeholder">Popularité</span>
-                      </li>
-                  
-                      <li class="select_items">
+                    </li>
+
+                    <li class="select_items">
                         <input class="select_expand" type="radio" name="customselect" id="customselect-opener" />
                         <label class="select_closeLabel" for="customselect-close"></label>
-                  
+
                         <ul class="select_options">
-                          <li class="select_option">
-                            <input class="select_input" type="radio" name="customselect" id="customselect-date" value="date"/>
-                            <label class="select_label" for="customselect-date"><span class="border-top">Date</span></label>
-                          </li>
-                  
-                          <li class="select_option">
-                            <input class="select_input" type="radio" name="customselect" id="customselect-titre" value="titre"/>
-                            <label class="select_label" for="customselect-titre"><span class="border-top">Titre</span></label>
-                          </li>
-                  
+                            <li class="select_option">
+                                <input class="select_input" type="radio" name="customselect" id="customselect-date"
+                                    value="date" />
+                                <label class="select_label" for="customselect-date"><span
+                                        class="border-top">Date</span></label>
+                            </li>
+                            <li class="select_option">
+                                <input class="select_input" type="radio" name="customselect" id="customselect-titre"
+                                    value="titre" />
+                                <label class="select_label" for="customselect-titre"><span
+                                        class="border-top">Titre</span></label>
+                            </li>
                         </ul>
-                  
+
                         <label class="select_expandLabel" for="customselect-opener"></label>
-                      </li>
-                    </ul>
-                  </div>
-                  
+
+                    </li>
+                </ul>
             </div>
-            <div class="photograph-content"></div>
-        </main>
-        <div id="contact_modal">
-            <div class="modal" id="modal" tabindex="0">
-                <header>
-                    <h2 role="heading" aria-level="2">Contactez-moi<div id="name"></div></h2>
-                    <img src="assets/icons/close.svg" id="close-form" alt="Close Contact Form" tabindex="0"/>
-                </header>
-                <form id="form">
-                    <div>
-                        <label for="prenom">Prénom</label>
-                        <input type="text" id="prenom" tabindex="0"/>
-                    </div>
-                    <div>
-                        <label for="nom">Nom</label>
-                        <input type="text" id="nom" tabindex="0"/>
-                    </div>
-                    <div>
-                        <label for="email">Email</label>
-                        <input type="email" id="email" tabindex="0"/>
-                    </div>
-                    <div>
-                        <label for="message">Votre Message</label>
-                        <textarea id="message" tabindex="0" aria-labelledby="Your Message"></textarea>
-                    </div>
-                    <button class="contact_button" role="button" aria-label="Send" tabindex="0">Envoyer</button>
-                </form>
-            </div>
+
         </div>
-        <div id="lightbox">
-            <div class="close"><i class="fa-solid fa-xmark"></i></div>
-            <div class="left" id="previous-media"><i class="fa-solid fa-chevron-left"></i></div>
-            <div class="img"><img id="img" src="" alt=""/></div>
-            <div class="video"><video id="video" controls></video></div>
-            <div class="right" id="next-media"><i class="fa-solid fa-chevron-right"></i></div>
+        <div class="photograph-content"></div>
+    </main>
+    <div id="contact_modal">
+        <div class="modal" id="modal" tabindex="0">
+            <header>
+                <h2 role="heading" aria-level="2">Contactez-moi<div id="name"></div></h2>
+                <img src="assets/icons/close.svg" id="close-form" alt="Close Contact Form" tabindex="0" />
+            </header>
+            <form id="form">
+                <div>
+                    <label for="prenom">Prénom</label>
+                    <input type="text" id="prenom" tabindex="0" />
+                </div>
+                <div>
+                    <label for="nom">Nom</label>
+                    <input type="text" id="nom" tabindex="0" />
+                </div>
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" tabindex="0" />
+                </div>
+                <div>
+                    <label for="message">Votre Message</label>
+                    <textarea id="message" tabindex="0" aria-labelledby="Your Message"></textarea>
+                </div>
+                <button class="contact_button" role="button" aria-label="Send" tabindex="0">Envoyer</button>
+            </form>
         </div>
-        <div id="likes-price">
-            <div id="likes"></div>
-            <div id="price"></div>
-        </div>
-        <script src="scripts/utils/Api.js"></script>
-        <script src="scripts/factories/photographerFactory.js"></script>
-        <script src="scripts/factories/MediaFactory.js"></script>
-        <script src="scripts/pages/photographer.js" type="module"></script>
-        <script src="scripts/utils/contactForm.js"></script>
-    </body>
+    </div>
+    <div id="lightbox">
+        <div class="close"><i class="fa-solid fa-xmark"></i></div>
+        <div class="left" id="previous-media"><i class="fa-solid fa-chevron-left"></i></div>
+        <div class="img"><img id="img" src="" alt="lightbox image" /></div>
+        <div class="video"><video id="video" controls></video></div>
+        <div class="right" id="next-media"><i class="fa-solid fa-chevron-right"></i></div>
+    </div>
+    <div id="likes-price">
+        <div id="likes"></div>
+        <div id="price"></div>
+    </div>
+    <script src="scripts/utils/Api.js"></script>
+    <script src="scripts/factories/photographerFactory.js"></script>
+    <script src="scripts/factories/MediaFactory.js"></script>
+    <script src="scripts/pages/photographer.js" type="module"></script>
+    <script src="scripts/utils/contactForm.js"></script>
+    <script src="scripts/utils/filter.js"></script>
+</body>
+
 </html>
