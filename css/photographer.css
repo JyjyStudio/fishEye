@@ -81,7 +81,6 @@ main .filter .select_expand::after {
   color: #fff;
   font-size: 20px;
   pointer-events: none;
-  z-index: 2;
   color: #fff;
   transition: all 250ms ease-in-out;
 }
