@@ -188,13 +188,13 @@ function slider (sens) {
   if (mediaTitles[index].includes('jpg')) {
     hide(lightboxVideo);
     show(lightboxImage);
-    lightboxImage.src = `/Projet-6/assets/photographers/${id}/${mediaTitles[index]}`;
+    lightboxImage.src = `./assets/photographers/${id}/${mediaTitles[index]}`;
   } else {
     hide(lightboxImage);
     show(lightboxVideo);
     const LightboxVideoSrc = document.querySelector('video source');
     lightboxVideo.appendChild(LightboxVideoSrc);
-    LightboxVideoSrc.src = `/Projet-6/assets/photographers/${id}/${mediaTitles[index]}`;
+    LightboxVideoSrc.src = `./assets/photographers/${id}/${mediaTitles[index]}`;
   }
 }
 
