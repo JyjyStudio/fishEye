@@ -5,7 +5,8 @@
   "main": "photographer.js",
   "scripts": {
     "sass": "sass --watch sass:css --no-source-map",
-    "sass-compressed": "sass --watch sass:css --style compressed --no-source-map"
+    "sass-compressed": "sass --watch sass:css --style compressed --no-source-map",
+    "semistandard": "semistandard --fix" 
   },
   "repository": {
     "type": "git",
@@ -19,5 +20,8 @@
   "homepage": "https://github.com/JyjyStudio/Fisheye-P6#readme",
   "dependencies": {
     "sass": "^1.49.9"
+  },
+  "devDependencies": {
+    "semistandard": "^16.0.1"
   }
 }
