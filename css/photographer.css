@@ -54,6 +54,7 @@ main .filter .custom-select {
 }
 main .filter .custom-select li {
   list-style-type: none;
+  z-index: 2;
 }
 main .filter .select {
   width: 170px;
