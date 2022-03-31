@@ -1,6 +1,13 @@
 const id = new URLSearchParams(location.search).get('id');
+
+const content = document.querySelector('.photograph-content');
 const nameTitle = document.getElementById('name');
-const medias = [];
+
+const popularity = document.querySelector("#customselect-close");
+const date = document.querySelector("#customselect-date");
+const titre = document.querySelector("#customselect-titre");
+
+let mediaTitles = [];
 let allLikes = 0;
 
 async function getPhotographersAllInfos() {
@@ -8,36 +15,40 @@ async function getPhotographersAllInfos() {
     
     const photographersInfos = await photographersApi.getPhotographersInfos();
     const photographersMedias = await photographersApi.getPhotographersMedias();
+    const photographerMedias = photographersMedias.filter(media => {
+        if(id == media.photographerId) {
+            return media;
+        }
+    })
     let allInfos = photographersInfos.concat(photographersMedias);
 
-    return allInfos;
+    return {allInfos,photographerMedias};
 }
 
-async function displayData(photographers) {
+async function displayData(photographer) {
     const photographersSection = document.querySelector(".photograph-header");
     const content = document.querySelector('.photograph-content');
 
-    for (let i = 0; i < photographers.length; i++) {
+    for (let i = 0; i < photographer.length; i++) {
         //affiche les infos du photographe demandé seulement
-        if(photographers[i].id == id) {
-            const photographerModel = photographerFactory(photographers[i]);
+        if(photographer[i].id == id) {
+            const photographerModel = photographerFactory(photographer[i]);
             const userCard = photographerModel.getUserInfos();
             photographersSection.innerHTML += userCard;
-            nameTitle.innerText += (photographers[i].name);
+            nameTitle.innerText += (photographer[i].name);
             const price = photographerModel.price;
             const priceElement = document.getElementById('price');
             priceElement.innerText = `${price}€ / jour`;
         }
         //affiche ses medias
-        if(photographers[i].photographerId == id) {
-            const photographerMedia = mediaFactory(photographers[i]);
+        if(photographer[i].photographerId == id) {
+            const photographerMedia = mediaFactory(photographer[i]);
             const projectCard = photographerMedia.createProjectsCard();
             content.innerHTML += projectCard;
-            medias.push(photographerMedia.video || photographerMedia.image)
+            mediaTitles.push(photographerMedia.video || photographerMedia.image)
             allLikes += photographerMedia.likes;
         }
     };
-
     //affichage des likes
     const likeElements = document.querySelectorAll(`p.likes`);
     const TotalikesElement = document.getElementById('likes');
@@ -56,8 +67,11 @@ async function displayData(photographers) {
 }
 
 async function init() {
-    const allInfos = await getPhotographersAllInfos();
+    const allInfos = await (await getPhotographersAllInfos()).allInfos;
+    const photographerMedias = await (await getPhotographersAllInfos()).photographerMedias;
+
     displayData(allInfos);
+    preventSpace();
 
     // ouvre et ferme le formulaire 
     const contactForm = document.getElementById('contact-button');
@@ -80,67 +94,34 @@ async function init() {
             closeModal();
         }
     });
-    preventSpace();
 
     // Gestion de la lightbox
-    const images = document.querySelectorAll('main img');
-    const videos = document.querySelectorAll('main video');
-    
-    images.forEach(image => {
-        image.addEventListener('click', ()=> {
-            hide(lightboxVideo);
-            show(lightbox);
-            show(lightboxImage);
-            lightboxImage.src = image.src;
-            lightboxImage.alt = image.alt;
-            const imgpath = image.src.split('/');
-            const imgName = imgpath[imgpath.length -1];
-            index = medias.indexOf(imgName);
-        })
+    displayLightboxImage();
+    displayLightboxVideo();
+
+    // Gestion des filtres
+    popularity.addEventListener('click', () => {
+        removeAllChildNodes(content);
+        displayData(photographerMedias.sort(byPopularity));
+        displayLightboxImage();
+        displayLightboxVideo();
     })
-    videos.forEach(video => {
-        video.addEventListener('click', ()=> {
-            hide(lightboxImage);
-            show(lightboxVideo);
-            lightbox.style.display = "block";
-            const LightboxVideoSrc = document.querySelector('video source');
-            lightboxVideo.appendChild(LightboxVideoSrc);
-        })
+    date.addEventListener('click', () => {
+        removeAllChildNodes(content);
+        displayData(photographerMedias.sort(byDate));
+        displayLightboxImage();
+        displayLightboxVideo();
     })
-    
-    //slider 
-    previousMedia.addEventListener('click', ()=> {
-        slider(-1);
-    })
-    nextMedia.addEventListener('click', ()=> {
-        slider(1);
+    titre.addEventListener('click', () => {
+        removeAllChildNodes(content);
+        displayData(photographerMedias.sort(byTitle));
+        displayLightboxImage();
+        displayLightboxVideo();
     })
 };
 
 init();
 
-// Gestion du submit
-const form = document.getElementById('form');
-form.addEventListener('submit', e => {
-    const firstnameValue = document.getElementById('prenom').value;
-    const lastnameValue =  document.getElementById('nom').value;
-    const emailValue = document.getElementById('email').value;
-    const messageValue = document.getElementById('message').value;
-    console.log({firstnameValue, lastnameValue, emailValue, messageValue});
-    e.preventDefault();
-})
-
-function preventSpace() {
-    const links = document.querySelectorAll('a');
-    links.forEach( profil => {
-        profil.addEventListener('keypress', e => {
-            if(e.keyCode == 32){ //la touche espace renvoi l'utilisateur vers la page demandée
-                e.preventDefault();
-                e.target.click();
-            }
-        });
-    });
-}
 
 // Lightbox
 const lightbox = document.getElementById('lightbox');
@@ -150,30 +131,67 @@ const nextMedia = document.getElementById('next-media')
 const lightboxImage = document.querySelector('#img');
 const lightboxVideo = document.querySelector('#video');
 const LightboxVideoSrc = document.querySelector('video source');
+// icone X
 closeLightbox.addEventListener('click', () => {
-    lightbox.style.display = 'none';
+    hide(lightbox);
 })
+// chevrons du slider
+previousMedia.addEventListener('click', ()=> {
+    slider(-1);
+})
+nextMedia.addEventListener('click', ()=> {
+    slider(1);
+})
+
+function displayLightboxImage() {  
+    const images = document.querySelectorAll('.photograph-content img');
+    images.forEach(image => {
+        image.addEventListener('click', ()=> {
+            hide(lightboxVideo);
+            show(lightbox);
+            show(lightboxImage);
+            lightboxImage.src = image.src;
+            lightboxImage.alt = image.alt;
+            const imgpath = image.src.split('/');
+            const imgName = imgpath[imgpath.length -1];
+            index = mediaTitles.indexOf(imgName);
+        })
+    })
+}
+
+function displayLightboxVideo() {
+    const videos = document.querySelectorAll('.photograph-content video');
+    videos.forEach(video => {
+        video.addEventListener('click', ()=> {
+            hide(lightboxImage);
+            show(lightbox);
+            show(lightboxVideo);
+            const LightboxVideoSrc = document.querySelector('video source');
+            lightboxVideo.appendChild(LightboxVideoSrc);
+        })
+    })
+}
 
 //slider 
 let index = 0;
 function slider(sens) {
     index += sens;
     if((index ) < 0) {
-        index = medias.length -1;
+        index = mediaTitles.length -1;
     }
-    if(index > medias.length -1) {
+    if(index > mediaTitles.length -1) {
         index = 0;
     }
-    if(medias[index].includes('jpg')) {
+    if(mediaTitles[index].includes('jpg')) {
         hide(lightboxVideo);
         show(lightboxImage);
-        lightboxImage.src = `/Projet-6/assets/photographers/${id}/${medias[index]}`;
+        lightboxImage.src = `/Projet-6/assets/photographers/${id}/${mediaTitles[index]}`;
     }else {
         hide(lightboxImage);
         show(lightboxVideo);
         const LightboxVideoSrc = document.querySelector('video source');
         lightboxVideo.appendChild(LightboxVideoSrc);
-        LightboxVideoSrc.src =  `/Projet-6/assets/photographers/${id}/${medias[index]}`;
+        LightboxVideoSrc.src =  `/Projet-6/assets/photographers/${id}/${mediaTitles[index]}`;
     }
     
 }
@@ -185,18 +203,64 @@ function show(element) {
     element.style.display = "block";
 }
 
-//Combobox
+// Gestion de la touche espace lors de la navigation au clavier
 
-const popularity = document.querySelector("#customselect-close");
-const date = document.querySelector("#customselect-date");
-const titre = document.querySelector("#customselect-titre");
+function preventSpace() {
+    const links = document.querySelectorAll('a');
+    const likes = document.querySelectorAll('p.likes');
+    const medias = document.querySelectorAll('.photograph-content img, .photograph-content video');
+    const clickableElements = [...links, ...likes, ...medias];
 
-popularity.addEventListener('click', () => {
-  console.log(popularity.value)
-})
-date.addEventListener('click', () => {
-  console.log(date.value)
-})
-titre.addEventListener('click', () => {
-  console.log(titre.value)
-})
+    clickableElements.forEach( clickableElement => {
+        clickableElement.addEventListener('keypress', e => {
+            if(e.keyCode == 32){ //la touche espace renvoi l'utilisateur vers la page demandée
+                e.preventDefault();
+                e.target.click();
+            }
+        });
+    });
+}
+
+// Fonctions de tri 
+
+function byPopularity(a, b) {
+    if(a.likes > b.likes) {
+        return 1;
+    }else if(a.likes < b.likes) {
+        return -1;
+    }
+    else {
+        return 0;
+    }
+}
+function byDate(a, b) {
+    if(a.date > b.date) {
+        return 1;
+    }else if(a.date < b.date) {
+        return -1;
+    }
+    else {
+        return 0;
+    }
+}
+function byTitle(a, b) {
+    if(a.title > b.title) {
+        return 1;
+    }else if(a.title < b.title) {
+        return -1;
+    }
+    else {
+        return 0;
+    }
+}
+
+// efface les medias avant le tri
+
+function removeAllChildNodes(parent) {
+    mediaTitles = [];
+    allLikes = 0;
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
+
