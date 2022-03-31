@@ -71,7 +71,6 @@ async function init() {
     const photographerMedias = await (await getPhotographersAllInfos()).photographerMedias;
 
     displayData(allInfos);
-    preventSpace();
 
     // ouvre et ferme le formulaire 
     const contactForm = document.getElementById('contact-button');
@@ -144,6 +143,7 @@ nextMedia.addEventListener('click', ()=> {
 })
 
 function displayLightboxImage() {  
+    preventSpace();
     const images = document.querySelectorAll('.photograph-content img');
     images.forEach(image => {
         image.addEventListener('click', ()=> {
@@ -160,6 +160,7 @@ function displayLightboxImage() {
 }
 
 function displayLightboxVideo() {
+    preventSpace();
     const videos = document.querySelectorAll('.photograph-content video');
     videos.forEach(video => {
         video.addEventListener('click', ()=> {
