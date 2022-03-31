@@ -331,6 +331,7 @@ form {
     height: 100vh;
     transform: translate(-50%, -50%);
     background-color: #fff;
+    z-index: 2;
     .left, .right {
         position: fixed;
         top: 50%;
