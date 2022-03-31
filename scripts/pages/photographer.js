@@ -11,7 +11,7 @@ let mediaTitles = [];
 let allLikes = 0;
 
 async function getPhotographersAllInfos () {
-  const photographersApi = new PhotographersApi('/Projet-6/data/photographers.json', 'photographers');
+  const photographersApi = new PhotographersApi('./data/photographers.json', 'photographers');
 
   const photographersInfos = await photographersApi.getPhotographersInfos();
   const photographersMedias = await photographersApi.getPhotographersMedias();
