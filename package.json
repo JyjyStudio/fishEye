@@ -6,7 +6,7 @@
   "scripts": {
     "sass": "sass --watch sass:css --no-source-map",
     "sass-compressed": "sass --watch sass:css --style compressed --no-source-map",
-    "semistandard": "semistandard --fix" 
+    "semistandard": "semistandard --fix"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,6 @@
     "sass": "^1.49.9"
   },
   "devDependencies": {
-    "semistandard": "^16.0.1"
+    "eslint": "^8.12.0"
   }
 }
