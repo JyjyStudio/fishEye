@@ -23,7 +23,7 @@ function photographerFactory (data) {
 							<h2 class="title2" role="heading" aria-level="2ar" tabindex="0">${name}</h2>
 							<div class="localisation-tagline">
 								<p class="localisation" tabindex="0">${city}, ${country}</p>
-								<p tabindex="0">${tagline}</p>
+								<p class="tagline" tabindex="0">${tagline}</p>
 							</div>
 						</div>
 						<button class="contact_button" id="contact-button" role="button" aria-label="Contactez-moi" tabindex="0">Contactez-moi</button>
