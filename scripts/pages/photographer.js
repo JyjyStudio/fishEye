@@ -2,6 +2,7 @@
 
 const id = new URLSearchParams(location.search).get('id');
 
+const main = document.querySelector('main');
 const content = document.querySelector('.photograph-content');
 const nameTitle = document.getElementById('name');
 
@@ -135,6 +136,7 @@ const lightboxVideo = document.querySelector('#video');
 // icone X
 closeLightbox.addEventListener('click', () => {
 	hide(lightbox);
+	show(main);
 });
 // chevrons du slider
 previousMedia.addEventListener('click', () => {
@@ -145,10 +147,11 @@ nextMedia.addEventListener('click', () => {
 });
 
 function displayLightboxImage () {
-	preventSpace();
+	
 	const images = document.querySelectorAll('.photograph-content img');
 	images.forEach( image => {
 		image.addEventListener('click', () => {
+			hide(main);
 			hide(lightboxVideo);
 			show(lightbox);
 			show(lightboxImage);
@@ -159,18 +162,23 @@ function displayLightboxImage () {
 			index = mediaTitles.indexOf(imgName);
 		});
 	});
+
+	preventSpace();
 }
 
 function displayLightboxVideo () {
-	preventSpace();
 	const videos = document.querySelectorAll('.photograph-content video');
 	videos.forEach((video) => {
 		video.addEventListener('click', () => {
+			hide(main);
 			hide(lightboxImage);
 			show(lightbox);
 			show(lightboxVideo);
 			const LightboxVideoSrc = document.querySelector('video source');
 			lightboxVideo.appendChild(LightboxVideoSrc);
+			const videopath = LightboxVideoSrc.src.split('/');
+			const videoname = videopath[videopath.length -1];
+			index = mediaTitles.indexOf(videoname);
 		});
 	});
 }
@@ -211,18 +219,21 @@ function preventSpace () {
 	const links = document.querySelectorAll('a');
 	const likes = document.querySelectorAll('p.likes');
 	const medias = document.querySelectorAll('.photograph-content img, .photograph-content video');
-	const clickableElements = [...links, ...likes, ...medias];
+	const tabindex = document.querySelectorAll('[tabindex]');
+
+	const clickableElements = [...links, ...likes, ...medias, ...tabindex];
 
 	clickableElements.forEach((clickableElement) => {
 		clickableElement.addEventListener('keypress', e => {
 			if (e.keyCode === 32) {
 			// la touche espace renvoi l'utilisateur vers la page demandée
-				e.preventDefault();
+				e.preventDefault();				
 				e.target.click();
 			}
 		});
 	});
 }
+
 
 // Fonctions de tri
 
