@@ -225,8 +225,8 @@ function preventSpace () {
 
 	clickableElements.forEach((clickableElement) => {
 		clickableElement.addEventListener('keypress', e => {
-			if (e.keyCode === 32) {
-			// la touche espace renvoi l'utilisateur vers la page demandée
+			if (e.keyCode === 32 || e.keyCode === 13) {
+			// les touches espace (32) et entrée (13) renvoient l'utilisateur vers la page demandée
 				e.preventDefault();				
 				e.target.click();
 			}
