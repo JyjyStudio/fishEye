@@ -81,15 +81,27 @@ async function init () {
 	const modal = document.getElementById('modal');
 
 	contactForm.addEventListener('click', () => {
+		main.setAttribute('aria-hidden', true);
+		modal.setAttribute('aria-hidden', false);
 		displayModal();
+		modal.focus();
 	});
 	closeForm.addEventListener('click', () => {
+		main.setAttribute('aria-hidden', false);
+		modal.setAttribute('aria-hidden', true);
 		closeModal();
 	});
 	modal.addEventListener('keyup', (e) => {
 		if (e.keyCode === 27) {
 			// la touche echape sur le formulaire ferme la modale
 			closeModal();
+		}
+	});
+	lightbox.addEventListener('keyup', (e) => {
+		if (e.keyCode === 27) {
+			// la touche echape sur le formulaire ferme la modale
+			hide(lightbox);
+			show(main);
 		}
 	});
 	closeForm.addEventListener('keyup', (e) => {
@@ -102,6 +114,9 @@ async function init () {
 	// Gestion de la lightbox
 	displayLightboxImage();
 	displayLightboxVideo();
+	lightbox.focus();
+	closeLightbox.focus();
+
 
 	// Gestion des filtres
 	popularity.addEventListener('click', () => {
@@ -149,6 +164,7 @@ nextMedia.addEventListener('click', () => {
 function displayLightboxImage () {
 	
 	const images = document.querySelectorAll('.photograph-content img');
+	const lightbox = document.getElementById('lightbox');
 	images.forEach( image => {
 		image.addEventListener('click', () => {
 			hide(main);
@@ -160,9 +176,10 @@ function displayLightboxImage () {
 			const imgpath = image.src.split('/');
 			const imgName = imgpath[imgpath.length - 1];
 			index = mediaTitles.indexOf(imgName);
+			closeLightbox.focus();
+			// preventSpace();
 		});
 	});
-
 	preventSpace();
 }
 
@@ -179,6 +196,7 @@ function displayLightboxVideo () {
 			const videopath = LightboxVideoSrc.src.split('/');
 			const videoname = videopath[videopath.length -1];
 			index = mediaTitles.indexOf(videoname);
+			closeLightbox.focus();
 		});
 	});
 }
@@ -213,7 +231,7 @@ function show (element) {
 	element.style.display = 'block';
 }
 
-// Gestion de la touche espace lors de la navigation au clavier
+// Gestion des touches entrée et espace lors de la navigation au clavier
 
 function preventSpace () {
 	const links = document.querySelectorAll('a');
@@ -225,10 +243,14 @@ function preventSpace () {
 
 	clickableElements.forEach((clickableElement) => {
 		clickableElement.addEventListener('keypress', e => {
+			console.log(clickableElement);
 			if (e.keyCode === 32 || e.keyCode === 13) {
 			// les touches espace (32) et entrée (13) renvoient l'utilisateur vers la page demandée
 				e.preventDefault();				
 				e.target.click();
+				// index = mediaTitles.indexOf(clickableElement);
+				console.log(lightbox.getElementsByTagName('img')[0].src);
+				console.log(mediaTitles);
 			}
 		});
 	});
