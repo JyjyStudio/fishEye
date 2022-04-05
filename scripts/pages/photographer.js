@@ -99,7 +99,7 @@ async function init () {
 	});
 	lightbox.addEventListener('keyup', (e) => {
 		if (e.keyCode === 27) {
-			// la touche echape sur le formulaire ferme la modale
+			// la touche echape sur le formulaire ferme la lightbox
 			hide(lightbox);
 			show(main);
 		}
@@ -141,7 +141,12 @@ async function init () {
 
 init();
 
-// Lightbox
+
+
+//------------------------//------------------------//------------------------//------------------------//
+//----------------- --------------------------    Lightbox    ------------------------------------------//
+//------------------------//------------------------//------------------------//------------------------//
+
 const lightbox = document.getElementById('lightbox');
 const closeLightbox = document.querySelector('#lightbox .close');
 const previousMedia = document.getElementById('previous-media');
@@ -177,7 +182,6 @@ function displayLightboxImage () {
 			const imgName = imgpath[imgpath.length - 1];
 			index = mediaTitles.indexOf(imgName);
 			closeLightbox.focus();
-			// preventSpace();
 		});
 	});
 	preventSpace();
@@ -201,7 +205,10 @@ function displayLightboxVideo () {
 	});
 }
 
-// slider
+//------------------------//------------------------//------------------------//------------------------//
+//----------------- ----------------------------    Slider    ------------------------------------------//
+//------------------------//------------------------//------------------------//------------------------//
+
 let index = 0;
 function slider (sens) {
 	index += sens;
@@ -231,8 +238,9 @@ function show (element) {
 	element.style.display = 'block';
 }
 
-// Gestion des touches entrée et espace lors de la navigation au clavier
-
+//------------------------//------------------------//------------------------//------------------------//
+//----------------- Gestion des touches entrée et espace lors de la navigation au clavier --------------//
+//------------------------//------------------------//------------------------//------------------------//
 function preventSpace () {
 	const links = document.querySelectorAll('a');
 	const likes = document.querySelectorAll('p.likes');
@@ -243,21 +251,19 @@ function preventSpace () {
 
 	clickableElements.forEach((clickableElement) => {
 		clickableElement.addEventListener('keypress', e => {
-			console.log(clickableElement);
-			if (e.keyCode === 32 || e.keyCode === 13) {
-			// les touches espace (32) et entrée (13) renvoient l'utilisateur vers la page demandée
+			if (e.keyCode === 32 || e.keyCode === 13) {   // 32=>espace ; 13=> entrée 
 				e.preventDefault();				
 				e.target.click();
-				// index = mediaTitles.indexOf(clickableElement);
-				console.log(lightbox.getElementsByTagName('img')[0].src);
-				console.log(mediaTitles);
 			}
 		});
 	});
 }
 
 
-// Fonctions de tri
+//------------------------//------------------------//------------------------//------------------------//
+//----------------- -----------------------    Fonctions de tri   --------------------------------------//
+//------------------------//------------------------//------------------------//------------------------//
+
 
 function byPopularity (a, b) {
 	if (a.likes > b.likes) {
@@ -286,8 +292,6 @@ function byTitle (a, b) {
 		return 0;
 	}
 }
-
-// efface les medias avant le tri
 
 function removeAllChildNodes (parent) {
 	mediaTitles = [];
