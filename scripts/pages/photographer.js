@@ -300,3 +300,22 @@ function removeAllChildNodes (parent) {
 		parent.removeChild(parent.firstChild);
 	}
 }
+
+const opener = document.getElementById('opener');
+const poplabel = document.getElementById('pop');
+const datelabel = document.getElementById('date');
+const titrelabel = document.getElementById('titre');
+opener.addEventListener('click', ()=> {
+	poplabel.setAttribute('tabindex', 0);
+	datelabel.setAttribute('tabindex', 0);
+	titrelabel.setAttribute('tabindex', 0);
+	preventSpace();
+});
+const labels = [poplabel, datelabel, titrelabel];
+labels.forEach(label => {
+	label.addEventListener('click', ()=> {
+		poplabel.setAttribute('tabindex', -1);
+		datelabel.setAttribute('tabindex', -1);
+		titrelabel.setAttribute('tabindex', -1);
+	});
+});
