@@ -86,13 +86,13 @@
             </form>
         </div>
     </div>
-    <div id="lightbox" role="dialog" aria-describedby="carrousel">
-        <div class="close" tabindex="0"><i class="fa-solid fa-xmark"></i></div>
-        <div class="left" id="previous-media" tabindex="0"><i class="fa-solid fa-chevron-left"></i></div>
+    <div id="lightbox" role="dialog" aria-label="carrousel">
+        <div class="close" tabindex="0" aria-label="fermer la modale"><i class="fa-solid fa-xmark"></i></div>
+        <div class="left" id="previous-media" tabindex="0" aria-label="média précédent"><i class="fa-solid fa-chevron-left"></i></div>
         <div class="img"><img id="img" src="#" alt="lightbox image" /></div>
         <div class="video"><video id="video" controls></video></div>
-        <div class="media-lightbox-title" id="media-lightbox-title"></div>
-        <div class="right" id="next-media" tabindex="0"><i class="fa-solid fa-chevron-right"></i></div>
+        <h2 class="media-lightbox-title" id="media-lightbox-title"></h2>
+        <div class="right" id="next-media" tabindex="0" aria-label="média suivant"><i class="fa-solid fa-chevron-right"></i></div>
     </div>
     <div id="likes-price">
         <div id="likes"></div>
