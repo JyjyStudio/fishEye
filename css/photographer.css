@@ -355,10 +355,10 @@ main .photograph-content video {
   padding: 30px;
 }
 #lightbox img, #lightbox video {
-  max-height: 95%;
+  max-height: 90%;
   max-width: 70%;
   position: fixed;
-  top: 50%;
+  top: 47%;
   left: 50%;
   transform: translate(-50%, -50%);
   object-fit: contain;
