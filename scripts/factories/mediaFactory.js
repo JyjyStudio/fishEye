@@ -22,7 +22,7 @@ function mediaFactory (data) {
 										Sorry, your browser doesn't support embedded videos.
 									</video>
 									<div class="content-infos">
-										<h2 class="title" tabindex="0">${title}</h2>
+										<h2 class="title">${title}</h2>
 										<p class="likes" tabindex="0"><span>${likes}</span> <i class="fa-solid fa-heart full-heart"></i></p>
 									</div>
 								</article>`;
