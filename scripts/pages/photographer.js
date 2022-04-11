@@ -110,9 +110,6 @@ async function init () {
 	// Gestion de la lightbox
 	displayLightboxImage();
 	displayLightboxVideo();
-	lightbox.focus();
-	closeLightbox.focus();
-
 
 	// Gestion des filtres
 	popularity.addEventListener('click', () => {
@@ -149,6 +146,8 @@ const previousMedia = document.getElementById('previous-media');
 const nextMedia = document.getElementById('next-media');
 const lightboxImage = document.querySelector('#img');
 const lightboxVideo = document.querySelector('#video');
+const mediaTitle = document.getElementById('media-lightbox-title');
+
 // icone X
 closeLightbox.addEventListener('click', () => {
 	hide(lightbox);
@@ -174,7 +173,6 @@ lightbox.addEventListener('keydown', (e) => {
 function displayLightboxImage () {
 	
 	const images = document.querySelectorAll('.photograph-content img');
-	const lightbox = document.getElementById('lightbox');
 	images.forEach( image => {
 		image.addEventListener('click', () => {
 			hide(main);
@@ -193,10 +191,9 @@ function displayLightboxImage () {
 	preventSpace();
 }
 
-const mediaTitle = document.getElementById('media-lightbox-title');
 function displayLightboxVideo () {
-	const videos = document.querySelectorAll('.photograph-content video');
 
+	const videos = document.querySelectorAll('.photograph-content video');
 	videos.forEach((video) => {
 		video.addEventListener('click', () => {
 			hide(main);
