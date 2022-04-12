@@ -13,6 +13,9 @@ const titre = document.querySelector('#customselect-titre');
 let mediaTitles = [];
 let allLikes = 0;
 
+/*****************************************************************************************/
+// getPhotographersAllInfos fetch les donnees puis retourne allInfos et photographerMedias
+/*****************************************************************************************/
 async function getPhotographersAllInfos () {
 	const photographersApi = new PhotographersApi('./data/photographers.json', 'photographers');
 
@@ -28,6 +31,10 @@ async function getPhotographersAllInfos () {
 	return { allInfos, photographerMedias };
 }
 
+
+/*****************************************************************************************/
+// displayData va afficher la data (en parametre) et la formater selon les factories
+/*****************************************************************************************/
 async function displayData (photographer) {
 	const photographersSection = document.querySelector('.photograph-header');
 	const content = document.querySelector('.photograph-content');
@@ -67,14 +74,6 @@ async function displayData (photographer) {
 			}
 		});	
 	});
-}
-
-async function init () {
-	const allInfos = await (await getPhotographersAllInfos()).allInfos;
-	const photographerMedias = await (await getPhotographersAllInfos()).photographerMedias;
-
-	displayData(allInfos);
-
 	// ouvre et ferme le formulaire
 	const contactForm = document.getElementById('contact-button');
 	const closeForm = document.getElementById('close-form');
@@ -110,6 +109,17 @@ async function init () {
 	// Gestion de la lightbox
 	displayLightboxImage();
 	displayLightboxVideo();
+	
+}
+
+/*****************************************************************************************/
+// init exectute displayData lors du chargement de la page et aussi en lors du tri 
+/*****************************************************************************************/
+async function init () {
+
+	const { allInfos, photographerMedias } =  await getPhotographersAllInfos();
+
+	displayData(allInfos);
 
 	// Gestion des filtres
 	popularity.addEventListener('click', () => {
@@ -253,6 +263,7 @@ function show (element) {
 //------------------------//------------------------//------------------------//------------------------//
 //----------------- Gestion des touches entrée et espace lors de la navigation au clavier --------------//
 //------------------------//------------------------//------------------------//------------------------//
+
 function preventSpace () {
 	const links = document.querySelectorAll('a');
 	const likes = document.querySelectorAll('p.likes');
