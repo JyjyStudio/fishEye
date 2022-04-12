@@ -72,6 +72,12 @@ async function displayData (photographer) {
 				allLikes++;
 				TotalikesElement.innerHTML = `${allLikes} <i class="fa-solid fa-heart full-heart">`;
 			}
+			if (count === 2) {// permet de décrementer le like une seule fois par media
+				element.querySelector('span').innerText--;
+				allLikes--;
+				TotalikesElement.innerHTML = `${allLikes} <i class="fa-solid fa-heart full-heart">`;
+				count = 0;
+			}
 		});	
 	});
 	// ouvre et ferme le formulaire
@@ -118,32 +124,14 @@ async function displayData (photographer) {
 async function init () {
 
 	const { allInfos, photographerMedias } =  await getPhotographersAllInfos();
-
+	
 	displayData(allInfos);
 
-	// Gestion des filtres
-	popularity.addEventListener('click', () => {
-		removeAllChildNodes(content);
-		displayData(photographerMedias.sort(byPopularity));
-		displayLightboxImage();
-		displayLightboxVideo();
-	});
-	date.addEventListener('click', () => {
-		removeAllChildNodes(content);
-		displayData(photographerMedias.sort(byDate));
-		displayLightboxImage();
-		displayLightboxVideo();
-	});
-	titre.addEventListener('click', () => {
-		removeAllChildNodes(content);
-		displayData(photographerMedias.sort(byTitle));
-		displayLightboxImage();
-		displayLightboxVideo();
-	});
+	applyFilter(photographerMedias);
+	
 }
 
 init();
-
 
 
 //------------------------//------------------------//------------------------//------------------------//
@@ -189,11 +177,11 @@ function displayLightboxImage () {
 			hide(lightboxVideo);
 			show(lightbox);
 			show(lightboxImage);
+			mediaTitle.innerText = image.alt;
 			lightboxImage.src = image.src;
 			lightboxImage.alt = image.alt;
 			const imgpath = image.src.split('/');
 			const imgName = imgpath[imgpath.length - 1];
-			mediaTitle.innerText = lightboxImage.alt;
 			index = mediaTitles.indexOf(imgName);
 			closeLightbox.focus();
 		});
@@ -201,7 +189,8 @@ function displayLightboxImage () {
 	preventSpace();
 }
 
-function displayLightboxVideo () {
+async function displayLightboxVideo () {
+	const { photographerMedias } =  await getPhotographersAllInfos();
 
 	const videos = document.querySelectorAll('.photograph-content video');
 	videos.forEach((video) => {
@@ -215,8 +204,7 @@ function displayLightboxVideo () {
 			const videopath = LightboxVideoSrc.src.split('/');
 			const videoname = videopath[videopath.length -1];
 			index = mediaTitles.indexOf(videoname);
-			const videoTitle = videoname.split('.')[0].replaceAll('_', ' ');
-			mediaTitle.innerText = videoTitle;
+			mediaTitle.innerText = photographerMedias[index].title;
 			closeLightbox.focus();
 		});
 	});
@@ -227,8 +215,11 @@ function displayLightboxVideo () {
 //------------------------//------------------------//------------------------//------------------------//
 
 let index = 0;
-function slider (sens) {
+async function slider (sens) {
+	const { photographerMedias } =  await getPhotographersAllInfos();
+
 	index += sens;
+
 	if (index < 0) {
 		index = mediaTitles.length - 1;
 	}
@@ -239,17 +230,14 @@ function slider (sens) {
 		hide(lightboxVideo);
 		show(lightboxImage);
 		lightboxImage.src = `./assets/photographers/${id}/${mediaTitles[index]}`;
-		const lightboxImageTitle = mediaTitles[index].split('.')[0].replaceAll('_', ' ');
-		lightboxImage.alt = lightboxImageTitle;
-		mediaTitle.innerText = lightboxImageTitle;
+		mediaTitle.innerText = photographerMedias[index].title;
 	} else {
 		hide(lightboxImage);
 		show(lightboxVideo);
 		const LightboxVideoSrc = document.querySelector('video source');
 		lightboxVideo.appendChild(LightboxVideoSrc);
 		LightboxVideoSrc.src = `./assets/photographers/${id}/${mediaTitles[index]}`;
-		const videoTitle = mediaTitles[index].split('.')[0].replaceAll('_', ' ');
-		mediaTitle.innerText = videoTitle;
+		mediaTitle.innerText = photographerMedias[index].title;
 	}
 }
 
@@ -287,6 +275,27 @@ function preventSpace () {
 //----------------- -----------------------    Fonctions de tri   --------------------------------------//
 //------------------------//------------------------//------------------------//------------------------//
 
+
+function applyFilter(photographerMedias) {
+	popularity.addEventListener('click', () => {
+		removeAllChildNodes(content);
+		displayData(photographerMedias.sort(byPopularity));
+		displayLightboxImage();
+		displayLightboxVideo();
+	});
+	date.addEventListener('click', () => {
+		removeAllChildNodes(content);
+		displayData(photographerMedias.sort(byDate));
+		displayLightboxImage();
+		displayLightboxVideo();
+	});
+	titre.addEventListener('click', () => {
+		removeAllChildNodes(content);
+		displayData(photographerMedias.sort(byTitle));
+		displayLightboxImage();
+		displayLightboxVideo();
+	});
+}
 
 function byPopularity (a, b) {
 	if (a.likes > b.likes) {
