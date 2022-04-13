@@ -401,11 +401,26 @@ main .photograph-content video {
   color: #901C1C;
   padding: 40px;
 }
+@media screen and (max-width: 700px) {
+  #lightbox .left, #lightbox .right {
+    top: 88%;
+  }
+}
 #lightbox .left {
   left: 100px;
 }
+@media screen and (max-width: 700px) {
+  #lightbox .left {
+    left: 0;
+  }
+}
 #lightbox .right {
   right: 100px;
+}
+@media screen and (max-width: 700px) {
+  #lightbox .right {
+    right: 0;
+  }
 }
 #lightbox .close {
   cursor: pointer;
@@ -415,6 +430,12 @@ main .photograph-content video {
   font-size: 2em;
   color: #901C1C;
   padding: 30px;
+}
+@media screen and (max-width: 700px) {
+  #lightbox .close {
+    right: 0;
+    padding: 10px 20px;
+  }
 }
 #lightbox img, #lightbox video {
   max-height: 90%;
@@ -426,6 +447,19 @@ main .photograph-content video {
   object-fit: contain;
   border-radius: 10px;
 }
+@media screen and (max-width: 700px) {
+  #lightbox img, #lightbox video {
+    height: 75vh;
+    position: fixed;
+    top: 10%;
+    object-fit: cover;
+    border-radius: 10px;
+    width: 100%;
+    max-width: initial;
+    max-height: initial;
+    top: 44%;
+  }
+}
 #lightbox .media-lightbox-title {
   position: absolute;
   left: 140px;
@@ -433,6 +467,14 @@ main .photograph-content video {
   font-size: 24px;
   color: #901C1C;
   font-weight: 400;
+}
+@media screen and (max-width: 700px) {
+  #lightbox .media-lightbox-title {
+    bottom: 30px;
+    width: 100%;
+    left: auto;
+    text-align: center;
+  }
 }
 
 #likes-price {
