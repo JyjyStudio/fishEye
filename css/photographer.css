@@ -7,7 +7,7 @@
 main {
   margin: 0 100px;
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
   main {
     margin: 0;
   }
@@ -19,7 +19,7 @@ main .photograph-header {
   background-color: #FAFAFA;
   height: 300px;
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
   main .photograph-header {
     height: inherit;
     margin-bottom: 30px;
@@ -31,7 +31,7 @@ main .photograph-header .infos {
   flex-direction: column;
   justify-content: space-evenly;
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
   main .photograph-header .infos {
     order: 2;
     margin: 30px 0;
@@ -48,7 +48,7 @@ main .photograph-header .localisation-tagline .localisation {
   color: #901C1C;
   font-size: 24px;
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
   main .photograph-header .localisation-tagline .localisation {
     padding: 20px 0;
   }
@@ -63,7 +63,7 @@ main .photograph-header img {
   object-fit: cover;
   box-shadow: 0px 4px 5px #0004;
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
   main .photograph-header img {
     order: 1;
     margin-top: 30px;
@@ -80,13 +80,13 @@ main .photograph-header #contact-button:hover, main .photograph-header #contact-
 main .photograph-header #contact-button:focus {
   outline: #901C1C solid;
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
   main .photograph-header #contact-button {
     order: 3;
     margin-bottom: 30px;
   }
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
   main .photograph-header {
     flex-direction: column;
     width: 100%;
@@ -97,12 +97,12 @@ main .filter {
   display: flex;
   align-items: center;
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
   main .filter {
     margin-bottom: 10px;
   }
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
   main .filter .tri {
     margin-left: 20px;
     font-size: 7vw;
@@ -246,7 +246,7 @@ main .photograph-content article {
   margin: 15px 25px 10px 0;
   width: 300px;
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
   main .photograph-content article {
     margin: 25px 15px;
     width: 100%;
@@ -263,7 +263,7 @@ main .photograph-content article .content-infos .title {
 main .photograph-content article .content-infos .title, main .photograph-content article .content-infos .likes {
   font-size: 1.5vw;
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
   main .photograph-content article .content-infos .title, main .photograph-content article .content-infos .likes {
     font-size: 6vw;
   }
@@ -318,7 +318,7 @@ main .photograph-content video {
   top: 20px;
   position: relative;
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
   #contact_modal .modal {
     width: 100%;
   }
@@ -407,7 +407,7 @@ main .photograph-content video {
   color: #901C1C;
   padding: 40px;
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
   #lightbox .left, #lightbox .right {
     top: 88%;
   }
@@ -415,7 +415,7 @@ main .photograph-content video {
 #lightbox .left {
   left: 100px;
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
   #lightbox .left {
     left: 0;
   }
@@ -423,7 +423,7 @@ main .photograph-content video {
 #lightbox .right {
   right: 100px;
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
   #lightbox .right {
     right: 0;
   }
@@ -437,11 +437,14 @@ main .photograph-content video {
   color: #901C1C;
   padding: 30px;
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
   #lightbox .close {
     right: 0;
     padding: 10px 20px;
   }
+}
+#lightbox .img {
+  height: 100vh;
 }
 #lightbox img, #lightbox video {
   max-height: 90%;
@@ -453,7 +456,7 @@ main .photograph-content video {
   object-fit: contain;
   border-radius: 10px;
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
   #lightbox img, #lightbox video {
     height: 75vh;
     position: fixed;
@@ -474,7 +477,7 @@ main .photograph-content video {
   color: #901C1C;
   font-weight: 400;
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
   #lightbox .media-lightbox-title {
     bottom: 30px;
     width: 100%;
@@ -496,7 +499,7 @@ main .photograph-content video {
   background-color: #DB8876;
   font-weight: bold;
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
   #likes-price {
     right: 0;
     height: 40px;
