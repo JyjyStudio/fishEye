@@ -88,7 +88,7 @@ a {
             color: #D3573C;
             font-size: 36px;
             @include mobiles {
-                font-size: 11vw;
+                font-size: 10vw;
             }
         }
         .localisation {
@@ -101,6 +101,7 @@ a {
         .tagline {
             @include mobiles {
                 font-size: 6vw;
+                text-align: center;
             }
         }
         .price {
