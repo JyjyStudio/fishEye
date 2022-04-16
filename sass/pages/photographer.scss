@@ -404,13 +404,13 @@ main {
         }
     }
     .left {
-        left: 100px;
+        left: 3%;
         @include mobiles {
             left: 0;
         }
     }
     .right {
-        right: 100px;
+        right: 3%;
         @include mobiles {
             right: 0;
         }

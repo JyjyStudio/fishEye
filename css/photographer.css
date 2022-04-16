@@ -413,7 +413,7 @@ main .photograph-content video {
   }
 }
 #lightbox .left {
-  left: 100px;
+  left: 3%;
 }
 @media screen and (max-width: 800px) {
   #lightbox .left {
@@ -421,7 +421,7 @@ main .photograph-content video {
   }
 }
 #lightbox .right {
-  right: 100px;
+  right: 3%;
 }
 @media screen and (max-width: 800px) {
   #lightbox .right {
