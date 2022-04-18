@@ -229,14 +229,16 @@ main {
         }
     }
     .photograph-content {
-        display: flex;
-        flex-wrap: wrap;
+        display: grid;
+        display: grid;
+        grid-gap: 20px;
+        grid-template-columns: repeat( auto-fit, minmax(300px, 1fr) );
         article {
             margin: 15px 25px 10px 0;
-            width: 300px;
+            width: 100%;
             @include mobiles {
-                margin: 25px 15px;
-                width: 100%;
+                margin: 25px auto;
+                width: 95%;
             }
             .content-infos {
                 display:flex; 

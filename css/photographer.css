@@ -239,17 +239,19 @@ main .filter .select_input:checked + .select_label .border-top {
   border-top: none;
 }
 main .photograph-content {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 main .photograph-content article {
   margin: 15px 25px 10px 0;
-  width: 300px;
+  width: 100%;
 }
 @media screen and (max-width: 800px) {
   main .photograph-content article {
-    margin: 25px 15px;
-    width: 100%;
+    width: 95%;
+    margin: 25px auto;
   }
 }
 main .photograph-content article .content-infos {
