@@ -303,7 +303,7 @@ async function applyFilter() {
 	titre.addEventListener('click', () => {
 		removeAllChildNodes(content);
 		mediaTitles.sort(byTitle);
-		photographerMedias.sort(byTitle);
+		photographerMedias.sort(byTitle); 
 		pushMediaNamesSorted(photographerMedias);
 		displayData(photographerMedias);
 		displayLightboxImage();
@@ -313,9 +313,9 @@ async function applyFilter() {
 }
 
 function byPopularity (a, b) {
-	if (a.likes > b.likes) {
+	if (a.likes < b.likes) {
 		return 1;
-	} else if (a.likes < b.likes) {
+	} else if (a.likes > b.likes) {
 		return -1;
 	} else {
 		return 0;
