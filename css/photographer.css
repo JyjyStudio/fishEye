@@ -398,7 +398,7 @@ main .photograph-content video {
   height: 100vh;
   transform: translate(-50%, -50%);
   background-color: #fff;
-  z-index: 2;
+  z-index: 3;
 }
 #lightbox .left, #lightbox .right {
   cursor: pointer;
@@ -500,6 +500,7 @@ main .photograph-content video {
   bottom: 0;
   background-color: #DB8876;
   font-weight: bold;
+  z-index: 2;
 }
 @media screen and (max-width: 800px) {
   #likes-price {
