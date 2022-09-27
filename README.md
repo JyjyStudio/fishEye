@@ -9,5 +9,5 @@ Projet 6 de la formation Openclassrooms qui a pour objectif de travailler sur l'
 - Ecrire du code JavaScript maintenable
 
 ### Liens utiles
-- [Live demo 🌍](https://jyjystudio.github.io/Fisheye-P6/) 
+- [Live demo 🌍](https://jyjystudio.github.io/fishEye/) 
 - [Figma mock-up 🖼️](https://www.figma.com/file/Q3yNeD7WTK9QHDldg9vaRl/UI-Design-FishEye-FR?node-id=0%3A1)
